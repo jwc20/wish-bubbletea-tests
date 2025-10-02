@@ -16,6 +16,9 @@ type model struct {
 
 func initialModel() model {
 	ti := textinput.New()
+	ti.Focus()
+	ti.Placeholder = "Jae C"
+	ti.Width = 20
 	return model{
 		ti,
 	}
