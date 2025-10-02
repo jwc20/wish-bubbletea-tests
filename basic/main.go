@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
-	// "os"
+	"os"
 
 	"github.com/charmbracelet/bubbles/textinput"
 	tea "github.com/charmbracelet/bubbletea"
@@ -27,7 +27,7 @@ func initialModel() model {
 
 // automatically run when p.Run()
 func (m model) Init() tea.Cmd {
-	return nil
+	return textinput.Blink
 }
 
 // automatically run when p.Run()
@@ -42,6 +42,11 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		// os.WriteFile("output.log", []byte(key), 0644)
 
 		if key == "ctrl+c" {
+			return m, tea.Quit
+		}
+		if key == "enter" {
+			// save to file
+			os.WriteFile("output.log", []byte(m.ti.Value()), 0644)
 			return m, tea.Quit
 		}
 	}
