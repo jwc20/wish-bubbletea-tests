@@ -66,7 +66,7 @@ func (m model) View() string {
 
 func main() {
 	//fmt.Println("foo bar")
-	p := tea.NewProgram(initialModel()) // create new program, tea.NewProgram() returns a pointer to a pointer to a t.program structure
+	p := tea.NewProgram(initialModel(), tea.WithAltScreen()) // create new program, tea.NewProgram() returns a pointer to a pointer to a t.program structure
 
 	// p.Run() returns: t.model and error
 	if _, err := p.Run(); err != nil {
