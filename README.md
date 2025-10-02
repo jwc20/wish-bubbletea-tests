@@ -1,2 +1,5 @@
 # wish-bubbletea-tests
-tests/prototypes/experiments with wish and bubbletea using Go
+
+
+for learning bubbletea TUI and wish for serving over SSH
+
