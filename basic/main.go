@@ -4,19 +4,21 @@ package main
 import (
 	"fmt"
 	"log"
-	"os"
+	// "os"
 
 	// "github.com/charmbracelet/bubbles/textinput"
 	tea "github.com/charmbracelet/bubbletea"
 )
 
 type model struct {
+	payload string
 }
 
 func initialModel() model {
-	return model{}
+	return model{
+		"DEFAULT VALUE",
+	}
 }
-
 
 // automatically run when p.Run()
 func (m model) Init() tea.Cmd {
@@ -32,18 +34,20 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	
 	if val, ok := msg.(tea.KeyMsg); ok {
 		key := val.String()
-		os.WriteFile("output.log", []byte(key), 0644)
+		// os.WriteFile("output.log", []byte(key), 0644)
 
 		if key == "ctrl+c" {
 			return m, tea.Quit
 		}
+
+		m.payload = key
 	}
 
 	return m, nil
 }
 
 func (m model) View() string {
-	return "Foo bar"
+	return m.payload
 }
 
 func main() {
